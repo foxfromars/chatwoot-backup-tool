@@ -12,11 +12,8 @@ async function exit() {
       console.error(err);
       return;
     }
-
-    // Filter for PNG files
     const pngFiles = files.filter(file => file.endsWith('.dump'));
 
-    // Process each PNG file
     pngFiles.forEach(file => {
       const filePath = path.join("./", file);
       fs_promise.rm(filePath);
@@ -39,7 +36,7 @@ async function main() {
     const backup_service = new Backup_service(minioClient);
     await backup_service.chatwoot_database();
     console.log(
-      dayjs().format("DD-MM-YYYY-HH:mm:ss"),
+      dayjs().format("DD-MM-YYYY-HH-mm-ss"),
       "Backup Concluido"
     );
   } catch (err) {
