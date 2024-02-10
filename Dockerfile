@@ -4,7 +4,7 @@ WORKDIR /home/node/app
 COPY . .
 
 RUN apt-get update -qq 
-RUN apt-get install -y postgresql-client
+RUN apt-get install -y postgresql-client neovim 
 RUN npm install
 RUN npm run build
 # replace this with your application's default port

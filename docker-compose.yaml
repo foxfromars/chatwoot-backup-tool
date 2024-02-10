@@ -1,7 +1,9 @@
 version: "3.8"
 services:
-  node:
-    image: "node:20"
+  BackupTool:
+    build:
+      context: "./"
+      dockerfile: "Dockerfile"
     user: "node"
     working_dir: /home/node/app
     environment:
@@ -10,4 +12,4 @@ services:
       - ./:/home/node/app
     expose:
       - "8080"
-    command: "npm run start:prod"
+    command: "npm run start:prod:docker"

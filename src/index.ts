@@ -2,10 +2,28 @@ import * as minio from "minio";
 import Backup_service from "./services/backup.service.js";
 import env from "./constants/env_variables.js";
 import dayjs from "dayjs";
-import fs from "fs/promises";
+import fs from "fs";
+import fs_promise from "fs/promises";
+import path from "path";
 
 async function exit() {
-  await fs.rm("*.dump");
+  fs.readdir("./", (err, files) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    // Filter for PNG files
+    const pngFiles = files.filter(file => file.endsWith('.dump'));
+
+    // Process each PNG file
+    pngFiles.forEach(file => {
+      const filePath = path.join("./", file);
+      fs_promise.rm(filePath);
+
+    });
+  });
+
   console.log("exit with success");
 }
 
