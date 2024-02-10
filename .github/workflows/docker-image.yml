@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: set docker tag
         run: |
-          echo "DOCKER_TAG=foxfromars/chatwoot:$GIT_REF"-ce >> $GITHUB_ENV
+          echo "DOCKER_TAG=foxfromars/chatwoot-utilities:$GIT_REF"-ce >> $GITHUB_ENV
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -24,7 +24,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: ./
           file: Dockerfile
           platforms: linux/amd64
           push: true
