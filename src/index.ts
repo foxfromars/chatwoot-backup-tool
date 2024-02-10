@@ -39,7 +39,7 @@ async function main() {
     const backup_service = new Backup_service(minioClient);
     await backup_service.chatwoot_database();
     console.log(
-      dayjs().format("DD-MM-YYYY-HH"),
+      dayjs().format("DD-MM-YYYY-HH:mm:ss"),
       "Backup Concluido"
     );
   } catch (err) {
