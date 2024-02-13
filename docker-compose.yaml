@@ -1,14 +1,15 @@
 version: "3.8"
 services:
-  BackupTool:
+  backuptool:
     build:
       context: "./"
       dockerfile: "Dockerfile"
-    working_dir: /home/docker/app
+    user: "node"
+    working_dir: /home/node/app
     environment:
       - NODE_ENV=production
     volumes:
-      - ./:/home/docker/app
+      - ./:/home/node/app
     expose:
       - "8080"
     command: "npm run start:prod:docker"
