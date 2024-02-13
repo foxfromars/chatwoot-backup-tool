@@ -14,10 +14,10 @@ class Backup_service {
   }
 
   private async generate_database_dump() {
-    const filename = `${env.DATABASE_NAME}_${dayjs().format("DD-MM-YYYY_HH-mm-ss")}.dump`;
+    const filename = `${process.env.DATABASE_NAME}_${dayjs().format("DD-MM-YYYY_HH-mm-ss")}.dump`;
     await new Promise((resolve, reject) => {
       exec(
-        `PGPASSWORD="${env.DATABASE_PASSWORD}" pg_dump -h ${env.DATABASE_URL} -Fc -U ${env.DATABASE_USERNAME} ${env.DATABASE_NAME} > ${filename}`,
+        `PGPASSWORD="${process.env.DATABASE_PASSWORD}" pg_dump -h ${process.env.DATABASE_URL} -Fc -U ${process.env.DATABASE_USERNAME} ${env.DATABASE_NAME} > ${filename}`,
         (error, stdout, stderror) => {
           if (error) {
             console.log(stderror);
@@ -33,7 +33,7 @@ class Backup_service {
 
   private async upload_chatwoot_backup(filename: string) {
     await this.minio_client.fPutObject(
-      env.MINIO_BUCKET_NAME,
+      process.env.MINIO_BUCKET_NAME,
       filename,
       filename
     );
