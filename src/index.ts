@@ -1,6 +1,5 @@
 import * as minio from "minio";
 import Backup_service from "./services/backup.service.js";
-import env from "./constants/env_variables.js";
 import dayjs from "dayjs";
 import fs from "fs";
 import fs_promise from "fs/promises";
@@ -17,10 +16,8 @@ async function exit() {
     pngFiles.forEach(file => {
       const filePath = path.join("./", file);
       fs_promise.rm(filePath);
-
     });
   });
-
   console.log("exit with success");
 }
 
