@@ -4,11 +4,11 @@ services:
     build:
       context: "./"
       dockerfile: "Dockerfile"
-    working_dir: /home/node/app
+    working_dir: /home/docker/app
     environment:
       - NODE_ENV=production
     volumes:
-      - ./:/home/node/app
+      - ./:/home/docker/app
     expose:
       - "8080"
     command: "npm run start:prod:docker"
