@@ -27,11 +27,9 @@ async function exit() {
 async function main() {
   try {
     const minioClient = new minio.Client({
-      endPoint: env.MINIO_URL,
-      useSSL: true,
-      port: env.MINIO_PORT,
-      accessKey: env.MINIO_ACESS_KEY,
-      secretKey: env.MINIO_SECRET_KEY,
+      endPoint: process.env.MINIO_URL,
+      accessKey: process.env.MINIO_ACESS_KEY,
+      secretKey: process.env.MINIO_SECRET_KEY,
     });
 
     const backup_service = new Backup_service(minioClient);
