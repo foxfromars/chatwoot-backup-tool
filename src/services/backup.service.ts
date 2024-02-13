@@ -17,7 +17,7 @@ class Backup_service {
     const filename = `${env.DATABASE_NAME}_${dayjs().format("DD-MM-YYYY_HH-mm-ss")}.dump`;
     await new Promise((resolve, reject) => {
       exec(
-        `pg_dump -h ${env.DATABASE_URL} -Fc -U ${env.DATABASE_USERNAME} ${env.DATABASE_NAME} > ${filename}`,
+        `PGPASSWORD="${env.DATABASE_PASSWORD}" pg_dump -h ${env.DATABASE_URL} -Fc -U ${env.DATABASE_USERNAME} ${env.DATABASE_NAME} > ${filename}`,
         (error, stdout, stderror) => {
           if (error) {
             console.log(stderror);
