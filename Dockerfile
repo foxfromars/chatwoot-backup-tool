@@ -1,6 +1,6 @@
 # specify the node base image with your desired version node:<version>
 FROM node:20
-WORKDIR /home/node/app
+WORKDIR /home/docker/app
 COPY . .
 
 RUN apt-get update -qq 

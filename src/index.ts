@@ -29,6 +29,7 @@ async function main() {
     const minioClient = new minio.Client({
       endPoint: env.MINIO_URL,
       useSSL: true,
+      port: env.MINIO_PORT,
       accessKey: env.MINIO_ACESS_KEY,
       secretKey: env.MINIO_SECRET_KEY,
     });
