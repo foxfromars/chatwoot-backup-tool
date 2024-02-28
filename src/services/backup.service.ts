@@ -1,4 +1,5 @@
 import * as minio from "minio";
+import fs from "fs";
 import env from "../constants/env_variables.js";
 import dayjs from "dayjs";
 import {
@@ -49,6 +50,13 @@ class Backup_service {
       .catch((err) => {
         throw new Error("Error uploading database dump to Minio: " + err.message);
       });
+
+    const fileInformation = fs.statSync(process.cwd() + "/" + filename);
+
+    return {
+      filename,
+      ...fileInformation
+    };
   }
 }
 
