@@ -33,8 +33,8 @@ class Email_notification_helper {
         {
           identification: process.env.INSTANCE_ID,
           database: process.env.DATABASE_NAME,
-          size: `${(backupInformation.size / (1024 * 1024)).toExponential(2)}MB`,
-          time: dayjs(backupInformation.birthtime).format("HH-mm-ss DD-MM-YYYY")
+          size: `${(backupInformation.size / (1024 * 1024)).toFixed(2)}MB`,
+          time: dayjs(backupInformation.birthtime).format("HH:mm:ss DD-MM-YYYY")
         });
 
       await this.transporter.sendMail({
