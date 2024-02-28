@@ -38,7 +38,7 @@ class Email_notification_helper {
         });
 
       await this.transporter.sendMail({
-        to: "luis.raposo.dev@gmail.com",
+        to: process.env.NOTIFICATION_EMAIL,
         from: process.env.EMAIL_USERNAME,
         subject: "Chatwoot Backup Automation Finished",
         html: emailBody
