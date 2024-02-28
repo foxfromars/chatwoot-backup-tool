@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import fs from "fs";
 import fs_promise from "fs/promises";
 import path from "path";
+import email_notificationHelper from "./helpers/email_notification.helper.js";
 
 async function exit() {
   fs.readdir("./", (err, files) => {
@@ -30,11 +31,12 @@ async function main() {
     });
 
     const backup_service = new Backup_service(minioClient);
-    await backup_service.chatwoot_database();
+    const backupInformation = await backup_service.chatwoot_database();
     console.log(
       dayjs().format("DD-MM-YYYY-HH-mm-ss"),
       "Backup Concluido"
     );
+    await email_notificationHelper.send_backup_notification(backupInformation);
   } catch (err) {
     console.log(err);
     throw new Error(err);
