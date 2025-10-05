@@ -12,4 +12,4 @@ services:
       - ./:/home/node/app
     expose:
       - "8080"
-    command: "npm run start:prod:docker"
+    command: "npm run start:prod"

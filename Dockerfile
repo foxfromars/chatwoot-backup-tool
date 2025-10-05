@@ -1,4 +1,4 @@
-FROM postgres:16 AS postgres-stage
+FROM postgres:16-bookworm AS postgres-stage
 
 FROM node:20
 
@@ -12,6 +12,6 @@ WORKDIR /home/node/app
 COPY . .
 RUN npm install
 RUN npm run build
-CMD /bin/bash
 # replace this with your application's default port
 EXPOSE 8080
+CMD /bin/bash
